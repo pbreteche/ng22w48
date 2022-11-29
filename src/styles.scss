@@ -5,3 +5,8 @@ h1 {
 a {
     cursor: pointer;
 }
+
+:not(form).ng-invalid.ng-touched {
+    box-shadow: 0 0 .5em red;
+    background-color: pink;
+}

@@ -7,5 +7,10 @@ import { Contact } from 'src/model/contact';
   styleUrls: ['./contact-new.component.scss']
 })
 export class ContactNewComponent {
-  contact = new Contact()
+  contact = new Contact();
+
+  save() {
+    // prendre en charge l'enregistrement de "this.contact"
+    this.contact = new Contact();
+  }
 }

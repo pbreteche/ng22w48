@@ -1,16 +1,19 @@
-<form>
+<form #form="ngForm" (ngSubmit)="save(); form.reset()">
     <div>
         <label for="contact-firstName">Prénom</label>
         <input type="text" name="firstName" id="contact-firstName"
-         [(ngModel)]="contact.firstName">
+         [(ngModel)]="contact.firstName" required #firstNameModel="ngModel">
+         <p [hidden]="!(firstNameModel.errors?.['required']) || firstNameModel.untouched">
+            Vous devez saisir un prénom.
+        </p>
     </div>
     <div>
         <label for="contact-lastName">Nom de famille</label>
         <input type="text" name="lastName" id="contact-lastName"
-        [(ngModel)]="contact.lastName">
+        [(ngModel)]="contact.lastName" required>
     </div>
     <div>
-        <label for="contact-birthdate">Nom de famille</label>
+        <label for="contact-birthdate">Date de naissance</label>
         <input type="date" name="birthdate" id="contact-birthdate"
         [(ngModel)]="contact.birthdate">
     </div>
@@ -22,11 +25,13 @@
     <div>
         <label for="contact-email">Email</label>
         <input type="email" name="email" id="contact-email"
-        [(ngModel)]="contact.email">
+        [(ngModel)]="contact.email" pattern=".+@.+" required #emailModel="ngModel">
+        <p [hidden]="!(emailModel.errors?.['required']) || emailModel.untouched">
+            Vous devez saisir un email.
+        </p>
+        <p [hidden]="!(emailModel.errors?.['pattern']) || emailModel.untouched">
+            Une adresse doit contenir un "@".
+        </p>
     </div>
-    <button>Enregistrer</button>
+    <button [disabled]="form.invalid">Enregistrer</button>
 </form>
-
-<pre>
-{{ contact | json }}
-</pre>
