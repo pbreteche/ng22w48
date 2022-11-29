@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Contact } from 'src/model/contact';
 
 @Component({
   selector: 'app-root',
@@ -6,13 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ng22w48';
-  contact = {
-    firstName: 'Pierre',
-    company: 'Dawan'
-  }
+  contact: Contact;
 
-  get pseudoProperty() {
-    return 'retour de la fonction';
+  constructor() {
+    this.contact = {
+      firstName: 'Prénom',
+      lastName: 'Nom de famille',
+      email: 'nom@example.com',
+      birthdate: new Date('1975-11-28'),
+      priority: 10,
+    }
   }
 }

@@ -1,3 +1,7 @@
-<h1>{{ title }}</h1>
-<p>{{ contact.firstName }}</p>
-<p>{{ pseudoProperty }}</p>
+<h1>{{ contact.firstName }} {{ contact.lastName | uppercase }}</h1>
+<dl>
+  <dt>Email</dt>
+  <dd>{{ contact.email }}</dd>
+  <dt>Date de naissance</dt>
+  <dd>{{ contact.birthdate | date:'mediumDate' }}</dd>
+</dl>
