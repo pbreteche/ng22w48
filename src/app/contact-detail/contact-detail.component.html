@@ -1,0 +1,9 @@
+<article>
+    <h1>{{ current?.firstName }} {{ current?.lastName | uppercase }}</h1>
+    <dl>
+      <dt>Email</dt>
+      <dd>{{ current?.email }}</dd>
+      <dt>Date de naissance</dt>
+      <dd>{{ current?.birthdate | date:'mediumDate' }}</dd>
+    </dl>
+  </article>
