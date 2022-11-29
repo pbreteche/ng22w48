@@ -1,11 +1,2 @@
 <app-contact-detail [current]="current"></app-contact-detail>
-
-<nav>
-  <ul>
-    <li *ngFor="let contact of contacts">
-      <a (click)="setCurrent(contact)">
-        {{ contact.firstName }} {{ contact.lastName }}
-      </a>
-    </li>
-  </ul>
-</nav>
+<app-contact-index [contacts]="contacts" (selected)="setCurrent($event)"></app-contact-index>

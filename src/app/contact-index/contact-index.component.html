@@ -1,0 +1,9 @@
+<nav>
+    <ul>
+        <li *ngFor="let contact of contacts">
+            <a (click)="setCurrent(contact)">
+                {{ contact.firstName }} {{ contact.lastName }}
+            </a>
+        </li>
+    </ul>
+</nav>
