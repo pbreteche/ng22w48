@@ -1,7 +1,19 @@
-<h1>{{ contact.firstName }} {{ contact.lastName | uppercase }}</h1>
-<dl>
-  <dt>Email</dt>
-  <dd>{{ contact.email }}</dd>
-  <dt>Date de naissance</dt>
-  <dd>{{ contact.birthdate | date:'mediumDate' }}</dd>
-</dl>
+<article>
+  <h1>{{ current.firstName }} {{ current.lastName | uppercase }}</h1>
+  <dl>
+    <dt>Email</dt>
+    <dd>{{ current.email }}</dd>
+    <dt>Date de naissance</dt>
+    <dd>{{ current.birthdate | date:'mediumDate' }}</dd>
+  </dl>
+</article>
+
+<nav>
+  <ul>
+    <li *ngFor="let contact of contacts">
+      <a (click)="setCurrent(contact)">
+        {{ contact.firstName }} {{ contact.lastName }}
+      </a>
+    </li>
+  </ul>
+</nav>

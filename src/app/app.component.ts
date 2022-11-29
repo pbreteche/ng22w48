@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CONTACTS } from 'src/data/contact-provider';
 import { Contact } from 'src/model/contact';
 
 @Component({
@@ -7,15 +8,10 @@ import { Contact } from 'src/model/contact';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  contact: Contact;
+  current = CONTACTS[0];
+  contacts = CONTACTS;
 
-  constructor() {
-    this.contact = {
-      firstName: 'Prénom',
-      lastName: 'Nom de famille',
-      email: 'nom@example.com',
-      birthdate: new Date('1975-11-28'),
-      priority: 10,
-    }
+  setCurrent(contact: Contact) {
+    this.current = contact;
   }
 }
