@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Contact } from 'src/model/contact';
+import { ContactCurrentService } from '../contact-current.service';
 import { ContactListService } from '../contact-list.service';
 
 @Component({
@@ -11,11 +12,13 @@ export class ContactNewComponent {
   contact = new Contact();
 
   constructor(
-    private contactList: ContactListService
+    private contactList: ContactListService,
+    private contactCurrent: ContactCurrentService
   ) {}
 
   save() {
-    this.contactList.contacts.push(this.contact);
+    this.contactList.push(this.contact);
+    this.contactCurrent.contact = this.contact;
     this.contact = new Contact();
   }
 }

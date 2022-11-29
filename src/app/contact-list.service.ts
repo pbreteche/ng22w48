@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Contact } from 'src/model/contact';
+import { ContactCurrentService } from './contact-current.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactListService {
-  contacts: Contact[] = [
+  private _contacts: Contact[] = [
     {
       firstName: 'Prénom',
       lastName: 'Nom de famille',
@@ -28,4 +29,16 @@ export class ContactListService {
       priority: 5,
     },
   ];
+
+  constructor(contactCurrent: ContactCurrentService) {
+    contactCurrent.contact = this._contacts[0];
+  }
+
+  push(contact: Contact)  {
+    this._contacts.push(contact);
+  }
+
+  get contacts(): Contact[] {
+    return this._contacts;
+  }
 }

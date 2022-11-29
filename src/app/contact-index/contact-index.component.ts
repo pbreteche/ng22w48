@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Contact } from 'src/model/contact';
+import { ContactCurrentService } from '../contact-current.service';
 import { ContactListService } from '../contact-list.service';
 
 @Component({
@@ -8,11 +9,9 @@ import { ContactListService } from '../contact-list.service';
   styleUrls: ['./contact-index.component.scss']
 })
 export class ContactIndexComponent {
-  @Output()
-  selected = new EventEmitter<Contact>()
-
   constructor(
-    private contactList: ContactListService
+    private contactList: ContactListService,
+    private contactCurrent: ContactCurrentService
   ) {}
 
   get contacts(): Contact[] {
@@ -20,6 +19,6 @@ export class ContactIndexComponent {
   }
 
   setCurrent(contact: Contact) {
-    this.selected.emit(contact);
+    this.contactCurrent.contact = contact;
   }
 }
