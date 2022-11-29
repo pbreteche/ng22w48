@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Contact } from 'src/model/contact';
+import { ContactListService } from '../contact-list.service';
 
 @Component({
   selector: 'app-contact-new',
@@ -9,8 +10,12 @@ import { Contact } from 'src/model/contact';
 export class ContactNewComponent {
   contact = new Contact();
 
+  constructor(
+    private contactList: ContactListService
+  ) {}
+
   save() {
-    // prendre en charge l'enregistrement de "this.contact"
+    this.contactList.contacts.push(this.contact);
     this.contact = new Contact();
   }
 }

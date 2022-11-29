@@ -9,7 +9,6 @@ import { Contact } from 'src/model/contact';
 })
 export class AppComponent {
   current = CONTACTS[0];
-  contacts = CONTACTS;
 
   setCurrent(contact: Contact) {
     this.current = contact;
