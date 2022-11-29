@@ -1,0 +1,32 @@
+<form>
+    <div>
+        <label for="contact-firstName">Prénom</label>
+        <input type="text" name="firstName" id="contact-firstName"
+         [(ngModel)]="contact.firstName">
+    </div>
+    <div>
+        <label for="contact-lastName">Nom de famille</label>
+        <input type="text" name="lastName" id="contact-lastName"
+        [(ngModel)]="contact.lastName">
+    </div>
+    <div>
+        <label for="contact-birthdate">Nom de famille</label>
+        <input type="date" name="birthdate" id="contact-birthdate"
+        [(ngModel)]="contact.birthdate">
+    </div>
+    <div>
+        <label for="contact-priority">Priorité</label>
+        <input type="number" name="priority" id="contact-priority"
+        [(ngModel)]="contact.priority">
+    </div>
+    <div>
+        <label for="contact-email">Email</label>
+        <input type="email" name="email" id="contact-email"
+        [(ngModel)]="contact.email">
+    </div>
+    <button>Enregistrer</button>
+</form>
+
+<pre>
+{{ contact | json }}
+</pre>

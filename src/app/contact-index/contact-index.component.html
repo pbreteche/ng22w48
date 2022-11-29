@@ -2,7 +2,7 @@
     <ul>
         <li *ngFor="let contact of contacts">
             <a (click)="setCurrent(contact)">
-                {{ contact.firstName }} {{ contact.lastName }}
+                {{ contact.firstName }} {{ contact.lastName }} {{contact.priority}}
             </a>
         </li>
     </ul>
