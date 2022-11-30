@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, Observable, of } from 'rxjs';
+import { BehaviorSubject, catchError, firstValueFrom, Observable, of } from 'rxjs';
 import { Contact } from 'src/model/contact';
 import { ContactCurrentService } from './contact-current.service';
 
@@ -15,21 +15,20 @@ export class ContactListService {
     contactCurrent: ContactCurrentService,
     private http: HttpClient
   ) {
-    this.http.get('assets/data.json', {
+    
+    firstValueFrom(this.http.get('assets/data.json', {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         Authorization: 'my-auth-token'
       })
-    })
-      .pipe(catchError((error) => {
-        console.log(error);
-        return of([])
-      }))
-      .subscribe((data) => {
+    }))
+      .then(data => {
         this._contacts.push(...data as Contact[]);
         this._subject.next(this._contacts);
         contactCurrent.contact = this._contacts[0];
-      })
+      }).catch((error) => {
+        console.log(error);
+      });
   }
 
   push(contact: Contact)  {
