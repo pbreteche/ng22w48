@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, Observable, of } from 'rxjs';
 import { Contact } from 'src/model/contact';
@@ -15,7 +15,12 @@ export class ContactListService {
     contactCurrent: ContactCurrentService,
     private http: HttpClient
   ) {
-    this.http.get('assets/data.json.missing')
+    this.http.get('assets/data.json', {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: 'my-auth-token'
+      })
+    })
       .pipe(catchError((error) => {
         console.log(error);
         return of([])
@@ -30,6 +35,8 @@ export class ContactListService {
   push(contact: Contact)  {
     this._contacts.push(contact);
     this._subject.next(this._contacts);
+    this.http.post('/contact', contact)
+      .subscribe(data => console.log(data));
   }
 
   get contacts(): Observable<Contact[]> {
