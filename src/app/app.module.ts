@@ -7,6 +7,7 @@ import { ContactDetailComponent } from './contact-detail/contact-detail.componen
 import { ContactIndexComponent } from './contact-index/contact-index.component';
 import { ContactNewComponent } from './contact-new/contact-new.component';
 import { ContactReactiveComponent } from './contact-reactive/contact-reactive.component';
+import { PeriodDirective } from './period.directive';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ContactReactiveComponent } from './contact-reactive/contact-reactive.co
     ContactDetailComponent,
     ContactIndexComponent,
     ContactNewComponent,
-    ContactReactiveComponent
+    ContactReactiveComponent,
+    PeriodDirective
   ],
   imports: [
     BrowserModule,

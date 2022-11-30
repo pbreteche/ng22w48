@@ -10,6 +10,8 @@ import { ContactListService } from '../contact-list.service';
 })
 export class ContactNewComponent {
   contact = new Contact();
+  from = '';
+  to = '';
 
   constructor(
     private contactList: ContactListService,

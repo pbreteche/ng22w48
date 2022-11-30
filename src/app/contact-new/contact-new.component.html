@@ -1,4 +1,4 @@
-<form #form="ngForm" (ngSubmit)="save(); form.reset()">
+<form #form="ngForm" (ngSubmit)="save(); form.reset()" appPeriod>
     <div>
         <label for="contact-firstName">Prénom</label>
         <input type="text" name="firstName" id="contact-firstName"
@@ -31,6 +31,15 @@
         </p>
         <p [hidden]="!(emailModel.errors?.['pattern']) || emailModel.untouched">
             Une adresse doit contenir un "@".
+        </p>
+    </div>
+    <div>
+        <label for="contact-period-from">Début</label>
+        <input type="date" name="from" id="contact-period-from" [(ngModel)]="from">
+        <label for="contact-period-to">Fin</label>
+        <input type="date" name="to" id="contact-period-to" [(ngModel)]="to">
+        <p [hidden]="form?.untouched || !(form?.errors?.['period'])">
+            La date de début ({{ form?.errors?.['period'].fromValue }}) doit être antérieure à la date de fin.
         </p>
     </div>
     <button [disabled]="form.invalid">Enregistrer</button>
