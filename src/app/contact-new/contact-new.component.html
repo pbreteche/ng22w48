@@ -15,7 +15,11 @@
     <div>
         <label for="contact-birthdate">Date de naissance</label>
         <input type="date" name="birthdate" id="contact-birthdate"
-        [(ngModel)]="contact.birthdate">
+        [(ngModel)]="contact.birthdate" appMinDate="1900-01-01" #birthdateModel="ngModel">
+        <p [hidden]="!(birthdateModel.errors?.['minDate']) || birthdateModel.untouched">
+            La date doit être ultérieure à
+            {{ birthdateModel.errors?.['minDate'].min | date }}
+        </p>
     </div>
     <div>
         <label for="contact-priority">Priorité</label>

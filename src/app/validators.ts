@@ -26,7 +26,7 @@ export class Validators {
             const dateValue = new Date(form.value)            
 
             if (dateValue < min) {
-                return {minDate: {value: form.value}}
+                return {minDate: {value: form.value, min: min}}
             }
 
             return null;

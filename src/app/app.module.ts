@@ -8,6 +8,7 @@ import { ContactIndexComponent } from './contact-index/contact-index.component';
 import { ContactNewComponent } from './contact-new/contact-new.component';
 import { ContactReactiveComponent } from './contact-reactive/contact-reactive.component';
 import { PeriodDirective } from './period.directive';
+import { MinDateDirective } from './min-date.directive';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { PeriodDirective } from './period.directive';
     ContactIndexComponent,
     ContactNewComponent,
     ContactReactiveComponent,
-    PeriodDirective
+    PeriodDirective,
+    MinDateDirective
   ],
   imports: [
     BrowserModule,
