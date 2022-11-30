@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { catchError, map, Observable } from 'rxjs';
 import { Contact } from 'src/model/contact';
 import { ContactCurrentService } from '../contact-current.service';
 import { ContactListService } from '../contact-list.service';
@@ -14,8 +15,14 @@ export class ContactIndexComponent {
     private contactCurrent: ContactCurrentService
   ) {}
 
-  get contacts(): Contact[] {
-    return this.contactList.contacts;
+  get contacts$(): Observable<Contact[]> {
+    return this.contactList.contacts
+      .pipe(
+        map((contacts: Contact[]) => contacts.filter(
+          (c: Contact) => c.priority && c.priority > 5
+        ))
+      )
+    ;
   }
 
   setCurrent(contact: Contact) {
