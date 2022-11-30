@@ -1,0 +1,37 @@
+<form [formGroup]="form" (ngSubmit)="save()">
+    <div>
+        <label for="contact-firstName">Prénom</label>
+        <input type="text" name="firstName" id="contact-firstName"
+         formControlName="firstName">
+         <p [hidden]="firstName?.untouched || !(firstName?.errors?.['required'])">
+            Vous devez saisir un prénom.
+        </p>
+    </div>
+    <div>
+        <label for="contact-lastName">Nom de famille</label>
+        <input type="text" name="lastName" id="contact-lastName"
+        formControlName="lastName">
+    </div>
+    <div>
+        <label for="contact-birthdate">Date de naissance</label>
+        <input type="date" name="birthdate" id="contact-birthdate"
+        formControlName="birthdate">
+    </div>
+    <div>
+        <label for="contact-priority">Priorité</label>
+        <input type="number" name="priority" id="contact-priority"
+        formControlName="priority">
+    </div>
+    <div>
+        <label for="contact-email">Email</label>
+        <input type="email" name="email" id="contact-email"
+        formControlName="email">
+        <p [hidden]="email?.untouched || !(email?.errors?.['required'])">
+            Vous devez saisir un email.
+        </p>
+        <p [hidden]="email?.untouched || !(email?.errors?.['pattern'])">
+            Une adresse doit contenir un "@".
+        </p>
+    </div>
+    <button [disabled]="form.invalid">Enregistrer</button>
+</form>
