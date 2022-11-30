@@ -19,7 +19,6 @@ export class ContactListService {
     firstValueFrom(this.http.get('assets/data.json', {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        Authorization: 'my-auth-token'
       })
     }))
       .then(data => {
