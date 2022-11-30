@@ -18,7 +18,9 @@ export class ContactReactiveComponent {
     lastName: new FormControl('', [
       Validators.required
     ]),
-    birthdate: new FormControl(''),
+    birthdate: new FormControl('', [
+      AppValidators.minDate(new Date('1900-01-01'))
+    ]),
     priority: new FormControl(''),
     email: new FormControl('', [
       Validators.required,

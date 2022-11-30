@@ -1,4 +1,4 @@
-import { AbstractControl, FormGroup, ValidationErrors } from "@angular/forms";
+import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 
 export class Validators {
     static period(form: AbstractControl): ValidationErrors | null {
@@ -16,5 +16,20 @@ export class Validators {
         }
 
         return null;
+    }
+
+    static minDate(min: Date): ValidatorFn {
+        return function(form: AbstractControl): ValidationErrors | null {
+            if (!form.value) {
+                return null;
+            }
+            const dateValue = new Date(form.value)            
+
+            if (dateValue < min) {
+                return {minDate: {value: form.value}}
+            }
+
+            return null;
+        } 
     }
 }
