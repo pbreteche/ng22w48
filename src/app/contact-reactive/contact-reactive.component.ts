@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Contact } from 'src/model/contact';
 import { ContactCurrentService } from '../contact-current.service';
 import { ContactListService } from '../contact-list.service';
+import { Validators as AppValidators } from '../validators';
 
 @Component({
   selector: 'app-contact-reactive',
@@ -23,6 +24,12 @@ export class ContactReactiveComponent {
       Validators.required,
       Validators.pattern(/.+@.+/)
     ]),
+    period: new FormGroup({
+      from: new FormControl(''),
+      to: new FormControl(''),
+    }, [
+      AppValidators.period
+    ])
   })
 
   constructor(
@@ -36,6 +43,10 @@ export class ContactReactiveComponent {
 
   get email() {
     return this.form.get('email');
+  }
+
+  get period() {
+    return this.form.get('period');
   }
 
   save() {

@@ -33,5 +33,16 @@
             Une adresse doit contenir un "@".
         </p>
     </div>
+    <div formGroupName="period">
+        <label for="contact-period-from">Début</label>
+        <input type="date" name="period-from" id="contact-period-from"
+        formControlName="from">
+        <label for="contact-period-to">Fin</label>
+        <input type="date" name="period-to" id="contact-period-to"
+        formControlName="to">
+        <p [hidden]="period?.untouched || !(period?.errors?.['period'])">
+            La date de début ({{ period?.errors?.['period'].fromValue }}) doit être antérieure à la date de fin.
+        </p>
+    </div>
     <button [disabled]="form.invalid">Enregistrer</button>
 </form>
