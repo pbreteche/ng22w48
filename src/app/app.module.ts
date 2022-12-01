@@ -11,6 +11,7 @@ import { ContactReactiveComponent } from './contact-reactive/contact-reactive.co
 import { PeriodDirective } from './period.directive';
 import { MinDateDirective } from './min-date.directive';
 import { AuthInterceptor } from './auth.interceptor';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -20,13 +21,17 @@ import { AuthInterceptor } from './auth.interceptor';
     ContactNewComponent,
     ContactReactiveComponent,
     PeriodDirective,
-    MinDateDirective
+    MinDateDirective,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RouterModule.forRoot([
+      {path: '', component: ContactIndexComponent},
+      {path: 'contact/nouveau', component: ContactNewComponent},
+    ]),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

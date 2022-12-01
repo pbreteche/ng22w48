@@ -1,0 +1,17 @@
+nav {
+    background: #123;
+    color: #abc;
+
+    ul {
+        display: flex;
+        list-style-type: none;
+        padding: 0;
+    }
+
+    a {
+        color: inherit;
+        display: block;
+        padding: .5em;
+        text-decoration: none;
+    }
+}
