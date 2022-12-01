@@ -19,8 +19,9 @@ export class ContactNewComponent {
   ) {}
 
   save() {
-    this.contactList.push(this.contact);
+    this.contactList.push(this.contact).subscribe(
+      id => this.router.navigate(['/contact/detail', id])
+    );
     this.contact = new Contact();
-    this.router.navigate(['']);
   }
 }

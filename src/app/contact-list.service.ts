@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, firstValueFrom, Observable } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, map, Observable, of } from 'rxjs';
 import { Contact } from 'src/model/contact';
 
 @Injectable({
@@ -9,6 +9,7 @@ import { Contact } from 'src/model/contact';
 export class ContactListService {
   private _contacts: Contact[] = [];
   private _subject = new BehaviorSubject<Contact[]>([]);
+  private _nextId = 133;
 
   constructor(
     private http: HttpClient
@@ -27,18 +28,28 @@ export class ContactListService {
       });
   }
 
-  push(contact: Contact)  {
+  push(contact: Contact): Observable<number>  {
+    contact.id = this._nextId;
+    ++this._nextId;
     this._contacts.push(contact);
-    this._subject.next(this._contacts);
-    this.http.post('/contact', contact)
-      .subscribe(data => console.log(data));
+/*    this.http.post('/contact', contact)
+      .subscribe(data => {
+        console.log('http post', data);
+        this._subject.next(this._contacts);
+      });
+*/    
+      return of(contact.id);
   }
 
   get contacts(): Observable<Contact[]> {
     return this._subject.asObservable();
   }
 
-  find(id: number) {
-    return this._contacts[id];
+  find(id: number): Observable<Contact|undefined> {
+    return this._subject.pipe(
+      map((contacts: Contact[]) => contacts.find(
+        (contact: Contact) => contact.id == id
+      ))
+    );
   }
 }

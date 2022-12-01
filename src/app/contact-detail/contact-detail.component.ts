@@ -19,7 +19,7 @@ export class ContactDetailComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
       const idParam = params.get('id');
       if (idParam != null) {
-        this.current = this.contactList.find(+idParam)
+        this.contactList.find(+idParam).subscribe(contact => this.current = contact)
       }
     })
   }
