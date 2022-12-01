@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, firstValueFrom, map, Observable, of } from 'rxjs';
+import { map, Observable, of, ReplaySubject } from 'rxjs';
 import { Contact } from 'src/model/contact';
 
 @Injectable({
@@ -8,23 +8,20 @@ import { Contact } from 'src/model/contact';
 })
 export class ContactListService {
   private _contacts: Contact[] = [];
-  private _subject = new BehaviorSubject<Contact[]>([]);
+  private _subject = new ReplaySubject<Contact[]>(1);
   private _nextId = 133;
 
   constructor(
     private http: HttpClient
   ) {
-    
-    firstValueFrom(this.http.get('assets/data.json', {
+    this.http.get('assets/data.json', {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
       })
-    }))
-      .then(data => {
+    })
+      .subscribe(data => {
         this._contacts.push(...data as Contact[]);
         this._subject.next(this._contacts);
-      }).catch((error) => {
-        console.log(error);
       });
   }
 
@@ -46,10 +43,10 @@ export class ContactListService {
   }
 
   find(id: number): Observable<Contact|undefined> {
-    return this._subject.pipe(
+    return this.contacts.pipe(
       map((contacts: Contact[]) => contacts.find(
         (contact: Contact) => contact.id == id
-      ))
+      ))      
     );
   }
 }

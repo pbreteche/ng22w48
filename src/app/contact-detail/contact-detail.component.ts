@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Contact } from 'src/model/contact';
-import { ContactListService } from '../contact-list.service';
 
 @Component({
   selector: 'app-contact-detail',
@@ -11,16 +10,10 @@ import { ContactListService } from '../contact-list.service';
 export class ContactDetailComponent implements OnInit {
   current: Contact|undefined;
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private contactList: ContactListService
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
-      const idParam = params.get('id');
-      if (idParam != null) {
-        this.contactList.find(+idParam).subscribe(contact => this.current = contact)
-      }
-    })
+    this.activatedRoute.data.subscribe(({contact}) => this.current = contact)
   }
 }

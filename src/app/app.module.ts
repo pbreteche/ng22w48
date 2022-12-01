@@ -12,6 +12,8 @@ import { PeriodDirective } from './period.directive';
 import { MinDateDirective } from './min-date.directive';
 import { AuthInterceptor } from './auth.interceptor';
 import { RouterModule } from '@angular/router';
+import { ContactDetailTitleResolver } from './resolver/contact-detail-title.resolver';
+import { ContactResolver } from './contact.resolver';
 
 @NgModule({
   declarations: [
@@ -29,9 +31,14 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      {path: '', component: ContactIndexComponent, pathMatch: 'full'},
-      {path: 'contact/nouveau', component: ContactNewComponent},
-      {path: 'contact/detail/:id', component: ContactDetailComponent},
+      {path: '', component: ContactIndexComponent, title: 'Carnet d\'adresse'},
+      {path: 'contact/nouveau', component: ContactNewComponent, title: 'Nouveau contact'},
+      {
+        path: 'contact/detail/:id',
+        component: ContactDetailComponent,
+        title: ContactDetailTitleResolver,
+        resolve: {contact: ContactResolver},
+      },
       {path: '**', redirectTo: ''},
     ]),
   ],
