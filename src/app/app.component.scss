@@ -13,5 +13,9 @@ nav {
         display: block;
         padding: .5em;
         text-decoration: none;
+
+        &.active {
+            background-color: #456;
+        }
     }
 }

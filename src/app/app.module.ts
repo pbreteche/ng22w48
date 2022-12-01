@@ -29,8 +29,9 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      {path: '', component: ContactIndexComponent},
+      {path: '', component: ContactIndexComponent, pathMatch: 'full'},
       {path: 'contact/nouveau', component: ContactNewComponent},
+      {path: '**', redirectTo: ''},
     ]),
   ],
   providers: [

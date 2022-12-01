@@ -19,7 +19,7 @@ export class ContactIndexComponent {
     return this.contactList.contacts
       .pipe(
         map((contacts: Contact[]) => contacts.filter(
-          (c: Contact) => c.priority && c.priority > 5
+          (c: Contact) => c.priority && c.priority > 0
         ))
       )
     ;
