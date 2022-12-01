@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Contact } from 'src/model/contact';
-import { ContactCurrentService } from '../contact-current.service';
 import { ContactListService } from '../contact-list.service';
 
 @Component({
@@ -15,12 +15,12 @@ export class ContactNewComponent {
 
   constructor(
     private contactList: ContactListService,
-    private contactCurrent: ContactCurrentService
+    private router: Router
   ) {}
 
   save() {
     this.contactList.push(this.contact);
-    this.contactCurrent.contact = this.contact;
     this.contact = new Contact();
+    this.router.navigate(['']);
   }
 }

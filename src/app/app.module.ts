@@ -31,6 +31,7 @@ import { RouterModule } from '@angular/router';
     RouterModule.forRoot([
       {path: '', component: ContactIndexComponent, pathMatch: 'full'},
       {path: 'contact/nouveau', component: ContactNewComponent},
+      {path: 'contact/detail/:id', component: ContactDetailComponent},
       {path: '**', redirectTo: ''},
     ]),
   ],

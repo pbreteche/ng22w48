@@ -1,8 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, firstValueFrom, Observable, of } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, Observable } from 'rxjs';
 import { Contact } from 'src/model/contact';
-import { ContactCurrentService } from './contact-current.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,6 @@ export class ContactListService {
   private _subject = new BehaviorSubject<Contact[]>([]);
 
   constructor(
-    contactCurrent: ContactCurrentService,
     private http: HttpClient
   ) {
     
@@ -24,7 +22,6 @@ export class ContactListService {
       .then(data => {
         this._contacts.push(...data as Contact[]);
         this._subject.next(this._contacts);
-        contactCurrent.contact = this._contacts[0];
       }).catch((error) => {
         console.log(error);
       });
@@ -39,5 +36,9 @@ export class ContactListService {
 
   get contacts(): Observable<Contact[]> {
     return this._subject.asObservable();
+  }
+
+  find(id: number) {
+    return this._contacts[id];
   }
 }

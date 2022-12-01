@@ -1,7 +1,7 @@
 <nav>
     <ul>
-        <li *ngFor="let contact of contacts$ | async">
-            <a (click)="setCurrent(contact)">
+        <li *ngFor="let contact of contacts$ | async; index as i">
+            <a [routerLink]="['/contact/detail', i]">
                 {{ contact.firstName }} {{ contact.lastName }} {{contact.priority}}
             </a>
         </li>

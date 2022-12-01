@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { catchError, map, Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Contact } from 'src/model/contact';
-import { ContactCurrentService } from '../contact-current.service';
 import { ContactListService } from '../contact-list.service';
 
 @Component({
@@ -11,8 +10,7 @@ import { ContactListService } from '../contact-list.service';
 })
 export class ContactIndexComponent {
   constructor(
-    private contactList: ContactListService,
-    private contactCurrent: ContactCurrentService
+    private contactList: ContactListService
   ) {}
 
   get contacts$(): Observable<Contact[]> {
@@ -23,9 +21,5 @@ export class ContactIndexComponent {
         ))
       )
     ;
-  }
-
-  setCurrent(contact: Contact) {
-    this.contactCurrent.contact = contact;
   }
 }

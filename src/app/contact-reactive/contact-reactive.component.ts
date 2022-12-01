@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Contact } from 'src/model/contact';
-import { ContactCurrentService } from '../contact-current.service';
 import { ContactListService } from '../contact-list.service';
 import { Validators as AppValidators } from '../validators';
 
@@ -35,8 +34,7 @@ export class ContactReactiveComponent {
   })
 
   constructor(
-    private contactList: ContactListService,
-    private contactCurrent: ContactCurrentService
+    private contactList: ContactListService
   ) {}
 
   get firstName() {
@@ -54,7 +52,6 @@ export class ContactReactiveComponent {
   save() {
     const contact = this.form.value as Contact;
     this.contactList.push(contact);
-    this.contactCurrent.contact = contact;
     this.form.reset();
   }
 }
