@@ -16,6 +16,11 @@ import { ContactDetailTitleResolver } from './resolver/contact-detail-title.reso
 import { ContactResolver } from './contact.resolver';
 import { LoginStubComponent } from './login-stub/login-stub.component';
 import { UserGuard } from './user.guard';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+import localeEs from '@angular/common/locales/es';
+import localeDe from '@angular/common/locales/de';
+import { TransliteratePipe } from './transliterate.pipe';
 
 @NgModule({
   declarations: [
@@ -27,6 +32,7 @@ import { UserGuard } from './user.guard';
     PeriodDirective,
     MinDateDirective,
     LoginStubComponent,
+    TransliteratePipe,
   ],
   imports: [
     BrowserModule,
@@ -55,4 +61,10 @@ import { UserGuard } from './user.guard';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+    registerLocaleData(localeFr)
+    registerLocaleData(localeDe)
+    registerLocaleData(localeEs)
+  }
+ }

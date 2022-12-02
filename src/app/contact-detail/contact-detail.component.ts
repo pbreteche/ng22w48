@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Contact } from 'src/model/contact';
 
@@ -10,7 +10,9 @@ import { Contact } from 'src/model/contact';
 export class ContactDetailComponent implements OnInit {
   current: Contact|undefined;
   constructor(
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    @Inject(LOCALE_ID)
+    public defaultLocale: string
   ) {}
 
   ngOnInit(): void {

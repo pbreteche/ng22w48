@@ -4,9 +4,15 @@
       <dt>Email</dt>
       <dd>{{ current?.email }}</dd>
       <dt>Date de naissance</dt>
-      <dd>{{ current?.birthdate | date:'mediumDate' }}</dd>
+      <dd>{{ current?.birthdate | date:'mediumDate':'CET':'es' }}</dd>
+      <dd>{{ current?.birthdate | date:'mediumDate':'CET':'fr' }}</dd>
+      <dd>{{ current?.birthdate | date:'mediumDate':'CET':'de' }}</dd>
     </dl>
   </article>
+
+  <p>Locale par défaut: {{ defaultLocale }}</p>
+  <p>Exemple de {{ 'trànslïtérâtîön' | transliterate }}</p>
+  <p>Exemple de {{ 'trànslïtérâtîön' | transliterate:['ï', 'îö'] }}</p>
 
   <a routerLink="/contact/detail/1">Le premier</a>
   <a routerLink="/contact/detail/4">Le second</a>
