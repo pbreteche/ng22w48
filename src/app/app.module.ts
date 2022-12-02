@@ -14,6 +14,8 @@ import { AuthInterceptor } from './auth.interceptor';
 import { RouterModule } from '@angular/router';
 import { ContactDetailTitleResolver } from './resolver/contact-detail-title.resolver';
 import { ContactResolver } from './contact.resolver';
+import { LoginStubComponent } from './login-stub/login-stub.component';
+import { UserGuard } from './user.guard';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { ContactResolver } from './contact.resolver';
     ContactReactiveComponent,
     PeriodDirective,
     MinDateDirective,
+    LoginStubComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,12 @@ import { ContactResolver } from './contact.resolver';
     HttpClientModule,
     RouterModule.forRoot([
       {path: '', component: ContactIndexComponent, title: 'Carnet d\'adresse'},
-      {path: 'contact/nouveau', component: ContactNewComponent, title: 'Nouveau contact'},
+      {
+        path: 'contact/nouveau',
+        component: ContactNewComponent,
+        title: 'Nouveau contact',
+        canActivate: [UserGuard],
+      },
       {
         path: 'contact/detail/:id',
         component: ContactDetailComponent,
