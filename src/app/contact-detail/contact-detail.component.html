@@ -5,8 +5,8 @@
       <dd [class]="longName2()">{{ current?.email }}</dd>
       <dt appHightlight>Date de naissance</dt>
       <dd>{{ current?.birthdate | date:'mediumDate':'CET':'es' }}</dd>
-      <dd>{{ current?.birthdate | date:'mediumDate':'CET':'fr' }}</dd>
-      <dd>{{ current?.birthdate | date:'mediumDate':'CET':'de' }}</dd>
+      <dd *appUnless="false">{{ current?.birthdate | date:'mediumDate':'CET':'fr' }}</dd>
+      <dd *appUnless="true">{{ current?.birthdate | date:'mediumDate':'CET':'de' }}</dd>
     </dl>
   </article>
 

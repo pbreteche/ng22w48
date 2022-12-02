@@ -23,6 +23,7 @@ import localeDe from '@angular/common/locales/de';
 import { TransliteratePipe } from './pipe/transliterate.pipe';
 import { PriorityPipe } from './pipe/priority.pipe';
 import { HightlightDirective } from './directive/hightlight.directive';
+import { UnlessDirective } from './directive/unless.directive';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { HightlightDirective } from './directive/hightlight.directive';
     TransliteratePipe,
     PriorityPipe,
     HightlightDirective,
+    UnlessDirective,
   ],
   imports: [
     BrowserModule,
