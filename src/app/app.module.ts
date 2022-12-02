@@ -22,6 +22,7 @@ import localeEs from '@angular/common/locales/es';
 import localeDe from '@angular/common/locales/de';
 import { TransliteratePipe } from './pipe/transliterate.pipe';
 import { PriorityPipe } from './pipe/priority.pipe';
+import { HightlightDirective } from './directive/hightlight.directive';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { PriorityPipe } from './pipe/priority.pipe';
     LoginStubComponent,
     TransliteratePipe,
     PriorityPipe,
+    HightlightDirective,
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,7 @@
     <dl>
       <dt [ngClass]="longName2()">Email</dt>
       <dd [class]="longName2()">{{ current?.email }}</dd>
-      <dt>Date de naissance</dt>
+      <dt appHightlight>Date de naissance</dt>
       <dd>{{ current?.birthdate | date:'mediumDate':'CET':'es' }}</dd>
       <dd>{{ current?.birthdate | date:'mediumDate':'CET':'fr' }}</dd>
       <dd>{{ current?.birthdate | date:'mediumDate':'CET':'de' }}</dd>
