@@ -14,8 +14,10 @@
     </div>
     <div>
         <label for="contact-birthdate">Date de naissance</label>
-        <input type="date" name="birthdate" id="contact-birthdate"
+        <input name="birthdate" id="contact-birthdate" [matDatepicker]="birthdatePicker"
         [(ngModel)]="contact.birthdate" appMinDate="1900-01-01" #birthdateModel="ngModel">
+        <mat-datepicker-toggle matIconSuffix [for]="birthdatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #birthdatePicker></mat-datepicker>
         <p [hidden]="!(birthdateModel.errors?.['minDate']) || birthdateModel.untouched">
             La date doit être ultérieure à
             {{ birthdateModel.errors?.['minDate'].min | date }}
@@ -41,10 +43,14 @@
         <label for="contact-period-from">Début</label>
         <input type="date" name="from" id="contact-period-from" [(ngModel)]="from">
         <label for="contact-period-to">Fin</label>
-        <input type="date" name="to" id="contact-period-to" [(ngModel)]="to">
+        <input matInput [matDatepicker]="picker" name="to" id="contact-period-to" [(ngModel)]="to">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
         <p [hidden]="form?.untouched || !(form?.errors?.['period'])">
             La date de début ({{ form?.errors?.['period'].fromValue }}) doit être antérieure à la date de fin.
         </p>
     </div>
-    <button [disabled]="form.invalid">Enregistrer</button>
+    <button mat-raised-button color="primary" [disabled]="form.invalid">
+        Enregistrer
+    </button>
 </form>

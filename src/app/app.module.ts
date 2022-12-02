@@ -24,6 +24,16 @@ import { TransliteratePipe } from './pipe/transliterate.pipe';
 import { PriorityPipe } from './pipe/priority.pipe';
 import { HightlightDirective } from './directive/hightlight.directive';
 import { UnlessDirective } from './directive/unless.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatIconModule} from '@angular/material/icon';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
+//import {MatFormFieldModule} from '@angular/material/form-field'; 
 
 @NgModule({
   declarations: [
@@ -45,6 +55,15 @@ import { UnlessDirective } from './directive/unless.directive';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatIconModule,
+    MatBadgeModule,
+    MatButtonModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatDividerModule,
+    MatListModule,
+    MatNativeDateModule,
+    //MatFormFieldModule,
     RouterModule.forRoot([
       {path: '', component: ContactIndexComponent, title: 'Carnet d\'adresse'},
       {
@@ -61,6 +80,7 @@ import { UnlessDirective } from './directive/unless.directive';
       },
       {path: '**', redirectTo: ''},
     ]),
+    BrowserAnimationsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

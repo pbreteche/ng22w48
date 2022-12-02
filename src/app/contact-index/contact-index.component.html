@@ -1,10 +1,15 @@
 <nav>
-    <ul>
-        <li *ngFor="let contact of contacts$ | async | priority:5; index as i">
-            <a [routerLink]="['/contact/detail', contact.id]">
-                {{ contact.firstName }} {{ contact.lastName }} {{contact.priority}}
-            </a>
-        </li>
-    </ul>
-    <button (click)="update()">Modifier le contenu de la liste</button>
+    <mat-list>
+        <mat-list-item *ngFor="let contact of contacts$ | async | priority; index as i">
+
+                <a mat-button matBadge="{{contact.priority}}"
+                    [routerLink]="['/contact/detail', contact.id]"
+                >
+                    {{ contact.firstName }} {{ contact.lastName }}
+                </a>
+        </mat-list-item>
+    </mat-list>
+
+    <mat-divider></mat-divider>
+    <button mat-button (click)="update()">Modifier le contenu de la liste</button>
 </nav>
