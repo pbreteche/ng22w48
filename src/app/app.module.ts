@@ -20,7 +20,8 @@ import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import localeEs from '@angular/common/locales/es';
 import localeDe from '@angular/common/locales/de';
-import { TransliteratePipe } from './transliterate.pipe';
+import { TransliteratePipe } from './pipe/transliterate.pipe';
+import { PriorityPipe } from './pipe/priority.pipe';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { TransliteratePipe } from './transliterate.pipe';
     MinDateDirective,
     LoginStubComponent,
     TransliteratePipe,
+    PriorityPipe,
   ],
   imports: [
     BrowserModule,

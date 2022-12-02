@@ -1,9 +1,10 @@
 <nav>
     <ul>
-        <li *ngFor="let contact of contacts$ | async; index as i">
+        <li *ngFor="let contact of contacts$ | async | priority:5; index as i">
             <a [routerLink]="['/contact/detail', contact.id]">
                 {{ contact.firstName }} {{ contact.lastName }} {{contact.priority}}
             </a>
         </li>
     </ul>
+    <button (click)="update()">Modifier le contenu de la liste</button>
 </nav>

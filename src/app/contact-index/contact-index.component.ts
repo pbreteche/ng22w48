@@ -14,12 +14,10 @@ export class ContactIndexComponent {
   ) {}
 
   get contacts$(): Observable<Contact[]> {
-    return this.contactList.contacts
-      .pipe(
-        map((contacts: Contact[]) => contacts.filter(
-          (c: Contact) => c.priority && c.priority > 0
-        ))
-      )
-    ;
+    return this.contactList.contacts;
+  }
+
+  update(): void {
+    this.contactList.push({firstName: 'nouveau', priority: 10});
   }
 }
